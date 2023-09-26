@@ -11,8 +11,6 @@ namespace testEfCore.Domains
         public BudgetDomain(IBudgetRepository budgetRepository)
         {
             this.budgetRepository=budgetRepository;
-
-
         }
 
         public async Task InsertBudgetData()
@@ -24,12 +22,12 @@ namespace testEfCore.Domains
 
             };
 
-            await budgetRepository.Add(finDataToAdd);
+            await budgetRepository.AddAsync(finDataToAdd);
         }
 
         public async Task ShowAllBudgetData()
         {
-            var datas = await this.budgetRepository.GetAll();
+            var datas = await this.budgetRepository.GetAllAsync();
             foreach (var data in datas)
             {
                 Console.WriteLine($"{data.Id} {data.Name}");
@@ -38,13 +36,13 @@ namespace testEfCore.Domains
 
         public async Task GetBudgetData(int id)
         {
-            var datas = await this.budgetRepository.GetAll();
+            var datas = await this.budgetRepository.GetAllAsync();
             if (datas.IsNullOrEmpty())
             {
                 return;
             }
             var existingId = datas.FirstOrDefault()!.Id;
-            var data = await this.budgetRepository.Get(existingId);
+            var data = await this.budgetRepository.GetAsync(existingId);
             Console.WriteLine($"{data.Id} {data.Name}");
         }
     }

@@ -12,23 +12,23 @@ namespace testEfCore.Repositories.Factory
             this.dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<T>> GetAll() => await dbContext.Set<T>().ToListAsync();
+        public async Task<IEnumerable<T>> GetAllAsync() => await dbContext.Set<T>().ToListAsync();
 
-        public async Task<T> Get(int id) => await dbContext.Set<T>().FirstOrDefaultAsync(entity => entity.Id == id) ?? throw new KeyNotFoundException();
+        public async Task<T> GetAsync(int id) => await dbContext.Set<T>().FirstOrDefaultAsync(entity => entity.Id == id) ?? throw new NullReferenceException();
 
-        public async Task Add(T entity)
+        public async Task AddAsync(T entity)
         {
             await dbContext.Set<T>().AddAsync(entity);
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Update(T entity)
+        public async Task UpdateAsync(T entity)
         {
             dbContext.Set<T>().Update(entity);
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Delete(T entity)
+        public async Task DeleteAsync(T entity)
         {
             dbContext.Set<T>().Remove(entity);
             await dbContext.SaveChangesAsync();

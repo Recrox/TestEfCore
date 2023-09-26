@@ -19,14 +19,16 @@ namespace testEfCore
                 var services = serviceScope.ServiceProvider;
 
                 var financeDomain = services.GetRequiredService<FinanceDomain>();
-                financeDomain.InsertDataFin().GetAwaiter().GetResult();
+                //financeDomain.InsertDataFin().GetAwaiter().GetResult();
                 financeDomain.ShowAllFinData().GetAwaiter().GetResult();
-                financeDomain.GetFinData(42).GetAwaiter().GetResult();
+                financeDomain.GetFinData(1).GetAwaiter().GetResult();
+                //financeDomain.Delete(2).GetAwaiter().GetResult();
+                //financeDomain.Update(new Models.FinData()).GetAwaiter().GetResult();
 
                 var budgetDomain = services.GetRequiredService<BudgetDomain>();
-                budgetDomain.InsertBudgetData().GetAwaiter().GetResult();
+                //budgetDomain.InsertBudgetData().GetAwaiter().GetResult();
                 budgetDomain.ShowAllBudgetData().GetAwaiter().GetResult();
-                budgetDomain.GetBudgetData(42).GetAwaiter().GetResult();
+                budgetDomain.GetBudgetData(1).GetAwaiter().GetResult();
             }
         }
     }
