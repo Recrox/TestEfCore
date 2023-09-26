@@ -21,10 +21,12 @@ namespace testEfCore
                 var financeDomain = services.GetRequiredService<FinanceDomain>();
                 financeDomain.InsertDataFin().GetAwaiter().GetResult();
                 financeDomain.ShowAllFinData().GetAwaiter().GetResult();
+                financeDomain.GetFinData(42).GetAwaiter().GetResult();
 
                 var budgetDomain = services.GetRequiredService<BudgetDomain>();
                 budgetDomain.InsertBudgetData().GetAwaiter().GetResult();
                 budgetDomain.ShowAllBudgetData().GetAwaiter().GetResult();
+                budgetDomain.GetBudgetData(42).GetAwaiter().GetResult();
             }
         }
     }

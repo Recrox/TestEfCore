@@ -1,4 +1,5 @@
-﻿using testEfCore.Models;
+﻿using Microsoft.IdentityModel.Tokens;
+using testEfCore.Models;
 using testEfCore.Repositories;
 
 namespace testEfCore.Domains
@@ -40,6 +41,18 @@ namespace testEfCore.Domains
                 Console.WriteLine($"{data.Id} {data.ENVIRO} {data.REALIZED}");
             }
             
+        }
+
+        public async Task GetFinData(int id)
+        {
+            var datas = await this.financeRepository.GetAll();
+            if (datas.IsNullOrEmpty())
+            {
+                return;
+            }
+            var existingId = datas.FirstOrDefault()!.Id;
+            var data = await this.financeRepository.Get(existingId);
+            Console.WriteLine($"{data.Id} {data.ENVIRO} {data.REALIZED}");
         }
     }
 }

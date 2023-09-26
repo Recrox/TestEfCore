@@ -14,7 +14,7 @@ namespace testEfCore.Repositories.Factory
 
         public async Task<IEnumerable<T>> GetAll() => await dbContext.Set<T>().ToListAsync();
 
-        public async Task<T?> Get(int id) => await dbContext.Set<T>().FirstOrDefaultAsync(entity => entity.Id == id);
+        public async Task<T> Get(int id) => await dbContext.Set<T>().FirstOrDefaultAsync(entity => entity.Id == id) ?? throw new KeyNotFoundException();
 
         public async Task Add(T entity)
         {
